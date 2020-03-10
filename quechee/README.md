@@ -3,7 +3,7 @@
 To get the process started, run the bootstrap script:
 
 ```
-bash <(wget -qO - https://github.com/ztsmith/ansible-chromebook-desktop/raw/master/run.sh)
+bash <(wget -qO - https://github.com/dhinman262/ansible/raw/master/quechee/bootstrap.sh)
 ```
 
 ## Testing via Vagrant
@@ -18,5 +18,6 @@ On the box:
 
 
 cd /vagrant
-bootstrap.sh
+./bootstrap.sh
+ansible-playbook 
 ```
