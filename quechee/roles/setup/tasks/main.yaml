@@ -1,7 +1,49 @@
 - name: Install common tools
   become: yes
   apt:
-    name: ['curl', 'git', 'emacs']
+    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential']
     state: installed
     update_cache: yes
 
+# Atom stuff
+- name: install atom
+  become: yes
+  apt:
+    deb: https://github.com/atom/atom/releases/download/v1.34.0/atom-amd64.deb
+
+- name: detect if nvm installed
+  stat:
+    path: ~/.nvm
+  register: nvm_dir
+  ignore_errors: yes
+
+- name: install nvm
+  shell: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+  when: nvm_dir.stat.exists == False
+
+- name: install nodejs
+  shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts=boron
+  when: nvm_dir.stat.exists == False
+  args:
+    executable: /bin/bash
+
+#- name: install global nodejs packages
+#  shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && npm install -g {{ item.name }}
+#  args:
+#    executable: /bin/bash
+#  with_items:
+#    - name: "bunyan"
+#    - name: "@google-cloud/functions-emulator"
+
+- name: create scripts directory
+  file:
+    path: {{ ansible_env.HOME }}/scripts
+    state: directory
+  
+- name: install WebStorm
+  shell: |
+     cd ~
+     wget https://download-cf.jetbrains.com/webide/WebStorm-2018.3.2.tar.gz
+     tar -xvf WebStorm-2018.3.2.tar.gz
+     cd WebStorm-2018.3.2
+     sudo ln -s ./WebStorm-2018.3.2/bin/webstorm.sh ~/scripts/webstorm
