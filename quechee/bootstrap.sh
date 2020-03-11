@@ -7,6 +7,13 @@ ensure_ansible() {
 }
 
 ensure_inventory() {
+    echo > inventory.yaml <<EOF
+---
+all:
+  hosts:
+    localhost:
+      ansible_connection: local
+EOF
     sudo ansible \
         --inventory='localhost,' \
         --connection='local' \
