@@ -20,8 +20,21 @@ EOF
         --module-name='copy' \
         --args='src=inventory.yaml dest=/etc/ansible/hosts' \
         localhost
-    }
+}
 
+ensure_git() {
+    sudo  DEBIAN_FRONTEND=noninteractive apt-get install git
+}
+
+clone_repo() {
+    cd ~
+    mkdir Resources
+    cd Resources
+    git clone https://github.com/dhinman262/ansible.git
+}
 sudo apt update
 ensure_ansible
 ensure_inventory
+ensure_git
+clone_repo
+
