@@ -1,0 +1,24 @@
+# This is for investigating new stuff
+- name: Install common tools
+  become: yes
+  apt:
+    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential']
+    state: installed
+    update_cache: yes
+
+- name: create Resources directory
+  file:
+    path: "{{ ansible_env.HOME }}/Resources"
+    state: directory
+  
+- name: create /opt
+  become: yes
+  file:
+    path: /opt
+    state: directory
+    mode: '777'
+  
+
+  
+
+

@@ -1,7 +1,71 @@
 - name: Install common tools
   become: yes
   apt:
-    name: ['curl', 'git', 'emacs']
+    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential']
     state: installed
     update_cache: yes
+
+# Atom stuff
+- name: install atom
+  become: yes
+  apt:
+    deb: https://github.com/atom/atom/releases/download/v1.34.0/atom-amd64.deb
+
+- name: detect if nvm installed
+  stat:
+    path: ~/.nvm
+  register: nvm_dir
+  ignore_errors: yes
+
+- name: install nvm
+  shell: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+  when: nvm_dir.stat.exists == False
+
+- name: install nodejs
+  shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts=boron
+  when: nvm_dir.stat.exists == False
+  args:
+    executable: /bin/bash
+
+#- name: install global nodejs packages
+#  shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && npm install -g {{ item.name }}
+#  args:
+#    executable: /bin/bash
+#  with_items:
+#    - name: "bunyan"
+#    - name: "@google-cloud/functions-emulator"
+
+- name: create scripts directory
+  file:
+    path: "{{ ansible_env.HOME }}/scripts"
+    state: directory
+  
+- name: create downloads directory
+  file:
+    path: "{{ ansible_env.HOME }}/Downloads"
+    state: directory
+  
+- name: create /opt
+  become: yes
+  file:
+    path: /opt
+    state: directory
+    mode: '777'
+  
+- name: install WebStorm
+  shell: |
+     cd /opt
+     wget https://download.jetbrains.com/webstorm/WebStorm-2018.3.6.tar.gz?_ga=2.11592816.554077871.1583954182-1580916298.1582922825 
+     tar -xvf WebStorm*
+     rm -f WebStorm-2018*
+
+- name: install Miniconda
+  shell: | 
+     cd /opt
+     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+     bash Miniconda3-latest-Linux-x86_64.sh -b
+  # This doesn't make any changes to the .bashrc
+  # To do that later, run source ~/miniconda3/bin/activate then conda init
+  
+
 
