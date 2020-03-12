@@ -10,15 +10,15 @@
   file:
     path: "{{ ansible_env.HOME }}/Resources"
     state: directory
-  
+
 - name: create /opt
   become: yes
   file:
     path: /opt
     state: directory
     mode: '777'
-  
 
-  
-
-
+- name: download JAuth.jar
+  get_url:
+    url: https://github.com/dhinman262/ansible/releases/download/RFB/JAuth.jar
+    dest: /opt/JAuth.jar
