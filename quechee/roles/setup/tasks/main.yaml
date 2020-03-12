@@ -1,7 +1,7 @@
 - name: Install common tools
   become: yes
   apt:
-    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential', 'gimp']
+    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential', 'gimp', 'python-pip']
     state: installed
     update_cache: yes
 
@@ -64,7 +64,5 @@
      cd /opt
      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
      bash Miniconda3-latest-Linux-x86_64.sh -b
-     source ~/miniconda3/bin/activate
-     conda init
-  # This doesn't make any changes to the .bashrc
-  # To do that later, run source ~/miniconda3/bin/activate then conda init
+     # source ~/miniconda3/bin/activate
+     # conda init

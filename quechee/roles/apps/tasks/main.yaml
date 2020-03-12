@@ -1,0 +1,32 @@
+---
+
+- name: create /opt
+  become: yes
+  file:
+    path: /opt
+    state: directory
+    mode: '777'
+
+- name: Download libreoffice
+  get_url:
+    url: https://download.documentfoundation.org/libreoffice/stable/6.3.5/deb/x86_64/LibreOffice_6.3.5_Linux_x86-64_deb.tar.gz
+    dest: /opt/LibreOffice_6.3.5_Linux_x86-64_deb.tar.gz
+
+- name: Unarchive libreoffice
+  unarchive:
+    src: /opt/LibreOffice_6.3.5_Linux_x86-64_deb.tar.gz
+    dest: /opt
+
+- name: Install libreoffice
+  become: yes
+  shell: |
+     cd /opt/LibreOffice_6.3.5.2_Linux_x86-64_deb/DEBS
+     wget https://download.jetbrains.com/webstorm/WebStorm-2018.3.6.tar.gz?_ga=2.11592816.554077871.1583954182-1580916298.1582922825
+     sudo dpkg -i *.deb
+
+- name: Install filezilla
+  become: yes
+  apt:
+    name: ['filezilla']
+    state: installed
+    update_cache: yes
