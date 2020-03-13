@@ -1,7 +1,7 @@
 - name: Install common tools
   become: yes
   apt:
-    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential', 'gimp', 'python-pip']
+    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential', 'gimp', 'python-pip', 'nemo']
     state: installed
     update_cache: yes
 
@@ -64,5 +64,7 @@
      cd /opt
      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
      bash Miniconda3-latest-Linux-x86_64.sh -b
+     # The above did not work; it downloaded the file but didn't install it
+     # I had to run the installer manually without the -b
      # source ~/miniconda3/bin/activate
      # conda init
