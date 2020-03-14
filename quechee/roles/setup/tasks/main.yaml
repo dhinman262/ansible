@@ -1,7 +1,7 @@
 - name: Install common tools
   become: yes
   apt:
-    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential', 'gimp', 'python-pip']
+    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential', 'gimp', 'python-pip', 'jq']
     state: installed
     update_cache: yes
 
