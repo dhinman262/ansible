@@ -2,8 +2,4 @@
 
 - hosts: localhost
   roles:
-  - setup
-  - base
-  - docker
-  - apps
   - node
