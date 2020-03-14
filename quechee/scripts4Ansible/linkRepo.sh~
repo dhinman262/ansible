@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+FROM=/mnt/chromeos/removable/MUSICBOX2/gitreposx
+TO=/home/dhinman262
+REPOS=( Notes machines projects )
+
+if [ ! -d "${FROM}" ] ; then
+    echo "Source directory ${FROM} does not exist"
+    exit 1
+fi
+
+for REPO in "${REPOS[@]}"
+do
+    echo "${REPO}"
+done
