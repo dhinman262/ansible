@@ -1,0 +1,14 @@
+---
+
+- name: Install snapd
+  become: yes
+  apt:
+    name: ['snapd']
+    state: installed
+    update_cache: yes
+
+- name: Install snap packages
+  become: yes
+  shell: |
+    snap install core
+    snap install core18
