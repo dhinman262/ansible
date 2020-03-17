@@ -1,11 +1,11 @@
 ---
 
-- name: Install gpg
-  become: yes
-  apt:
-    name: ['gpg']
-    state: installed
-    update_cache: yes
+#- name: Install gpg
+#  become: yes
+#  apt:
+#    name: ['gpg']
+#    state: installed
+#    update_cache: yes
 
 - name: Import key for repo
   become: yes
