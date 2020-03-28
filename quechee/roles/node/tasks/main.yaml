@@ -1,0 +1,19 @@
+- name: detect if nvm installed
+  stat:
+    path: /home/dhinman262/.nvm
+  register: nvm_dir
+  ignore_errors: yes
+
+- name: fetch nvm
+  shell: curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh > /opt/nvminstall.sh
+  when: nvm_dir.stat.exists == False
+
+- name: install nvm
+  shell: /bin/bash /opt/nvminstall.sh
+  when: nvm_dir.stat.exists == False
+
+- name: install nodejs
+  shell: source {{ ansible_env.HOME }}/.nvm/nvm.sh && nvm install --lts=boron
+  when: nvm_dir.stat.exists == False
+  args:
+    executable: /bin/bash
