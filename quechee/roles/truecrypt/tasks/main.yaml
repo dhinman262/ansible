@@ -1,0 +1,5 @@
+---
+
+- name: Install truecrypt using snap
+  shell: |
+    snap install truecrypt --beta --devmode
