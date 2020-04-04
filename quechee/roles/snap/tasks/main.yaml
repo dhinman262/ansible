@@ -1,9 +1,9 @@
 ---
 
-- name: Install snapd
+- name: Install snap
   become: yes
   apt:
-    name: ['snapd']
+    name: ['snap']
     state: installed
     update_cache: yes
 
