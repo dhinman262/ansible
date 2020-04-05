@@ -1,0 +1,6 @@
+---
+
+- name: Install veracrypt from the internet
+  apt:
+    deb: https://launchpad.net/veracrypt/trunk/1.24-update4/+download/veracrypt-1.24-Update4-Debian-9-amd64.deb 
+
