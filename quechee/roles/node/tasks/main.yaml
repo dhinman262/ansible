@@ -9,6 +9,7 @@
   when: nvm_dir.stat.exists == False
 
 - name: install nvm
+  become: yes
   shell: /bin/bash /opt/nvminstall.sh
   when: nvm_dir.stat.exists == False
 
@@ -17,3 +18,23 @@
   when: nvm_dir.stat.exists == False
   args:
     executable: /bin/bash
+
+- name: Get Yarn apt key
+  become: yes
+  apt_key:
+    url: https://dl.yarnpkg.com/debian/pubkey.gpg
+    state: present
+
+- name: Add Yarn repo
+  become: yes
+  apt_repository:
+    repo: deb https://dl.yarnpkg.com/debian/ stable main
+    state: present
+
+- name: Install Yarn
+  become: yes
+  apt:
+    name: ['yarn']
+    state: installed
+    update_cache: yes
+  
