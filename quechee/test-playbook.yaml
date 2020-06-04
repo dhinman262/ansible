@@ -2,5 +2,4 @@
 
 - hosts: localhost
   roles:
-  - chrome
-  - node
+  - go
