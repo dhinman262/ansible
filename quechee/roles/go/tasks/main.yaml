@@ -23,6 +23,13 @@
   args:
      creates: /usr/local/go
 
+- name: install bison
+  become: yes
+  apt:
+    name: ['bison']
+    state: installed
+    update_cache: yes
+
 - name: install gvm
   shell: |
      curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer > /opt/gvminstall.sh
@@ -30,5 +37,3 @@
      source /home/dhinman262/.gvm/scripts/gvm
   args:
      creates: /opt/gvminstall.sh
-     
-     
