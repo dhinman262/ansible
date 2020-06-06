@@ -10,6 +10,9 @@
      cd /opt
      wget https://download.jetbrains.com/go/goland-2020.1.2.tar.gz?_ga=2.32718714.593149619.1591228392-1555125490.1591228392
      tar -xvf goland*
+     rm -rf goland*
+  args:
+     creates: /opt/GoLand-2020.1.2
 
 
 - name: install go binary
@@ -17,3 +20,15 @@
      cd /opt
      wget https://dl.google.com/go/go1.14.4.linux-amd64.tar.gz
      tar -C /usr/local -xzf go*.tar.gz
+  args:
+     creates: /usr/local/go
+
+- name: install gvm
+  shell: |
+     curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer > /opt/gvminstall.sh
+     bash /opt/gvminstall.sh
+     source /home/dhinman262/.gvm/scripts/gvm
+  args:
+     creates: /opt/gvminstall.sh
+     
+     
