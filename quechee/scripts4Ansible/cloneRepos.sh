@@ -4,23 +4,25 @@ FROM=/mnt/chromeos/removable/MUSICBOX2/gitrepos
 TO=/home/dhinman262
 REPOS=( Notes machines projects )
 
-if [ ! -d "${FROM}" ] ; then
-    echo "Source directory ${FROM} does not exist"
-    exit 1
-fi
+cloneIt() {
+    FROM=$1
+    TO=$2
+    REPO=$3
+    if [ ! -d "${FROM}" ] ; then
+        echo "Source directory ${FROM} does not exist"
+        exit 1
+    fi
 
-if [ ! -d "${FROM}" ] ; then
-    echo "Source directory ${FROM} does not exist"
-    exit 1
-fi
+    if [ ! -d "${FROM}" ] ; then
+        echo "Source directory ${FROM} does not exist"
+        exit 1
+    fi
 
-if [ ! -d "${TO}" ] ; then
-    echo "Target directory ${TO} does not exist"
-    exit 1
-fi
+    if [ ! -d "${TO}" ] ; then
+        echo "Target directory ${TO} does not exist"
+        exit 1
+    fi
 
-for REPO in "${REPOS[@]}"
-do
     cd $TO
     if [ -d "${REPO}" ]
     then
@@ -30,4 +32,8 @@ do
 	cd $REPO
 	git remote add musicbox2  file://${FROM}/${REPO}
     fi
-done
+}
+
+cloneIt $FROM $TO Notes
+cloneIt $FROM $TO machines
+# 
