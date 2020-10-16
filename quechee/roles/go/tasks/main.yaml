@@ -12,7 +12,7 @@
      tar -xvf goland*
      rm -rf goland*
   args:
-     creates: /opt/GoLand-2020.1.2
+     creates: /opt/GoLand-2020.1.3
 
 
 - name: install go binary
@@ -22,6 +22,11 @@
      tar -C /usr/local -xzf go*.tar.gz
   args:
      creates: /usr/local/go
+
+- name: symlink in go binary
+  become: yes
+  shell: |
+      ln -s /usr/local/go/bin/go /usr/bin/go
 
 - name: install bison
   become: yes
