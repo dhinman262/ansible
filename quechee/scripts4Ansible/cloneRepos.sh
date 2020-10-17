@@ -2,6 +2,7 @@
 
 FROM=/mnt/chromeos/removable/MUSICBOX2/gitrepos
 TO=/home/dhinman262
+ALTTO=/mnt/chromeos/removable/SDCard/Resources
 REPOS=( Notes machines projects )
 
 cloneIt() {
@@ -36,4 +37,5 @@ cloneIt() {
 
 cloneIt $FROM $TO Notes
 cloneIt $FROM $TO machines
+cloneIt $FROM $ALTTO projects
 # 
