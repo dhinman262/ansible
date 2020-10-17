@@ -26,6 +26,10 @@ ensure_git() {
     sudo  DEBIAN_FRONTEND=noninteractive apt-get install git
 }
 
+ensure_python() {
+    sudo ln -s /usr/bin/python3 /usr/bin/python 
+}
+
 clone_repo() {
     cd ~
     mkdir Resources
@@ -34,6 +38,7 @@ clone_repo() {
 }
 sudo apt update
 ensure_ansible
+ensure_python
 ensure_inventory
 ensure_git
 clone_repo
