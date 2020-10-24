@@ -7,13 +7,15 @@ ensure_ansible() {
 }
 
 ensure_inventory() {
-    echo > inventory.yaml <<EOF
+    if [ ! -f inventory.yaml ]; then
+        echo > inventory.yaml <<EOF
 ---
 all:
   hosts:
     localhost:
       ansible_connection: local
 EOF
+    fi
     sudo ansible \
         --inventory='localhost,' \
         --connection='local' \
@@ -27,14 +29,21 @@ ensure_git() {
 }
 
 ensure_python() {
-    sudo ln -s /usr/bin/python3 /usr/bin/python 
+    if [ ! -f /usr/bin/python3 ]; then
+        sudo ln -s /usr/bin/python3 /usr/bin/python
+    fi
+    pip install diff-highlight
 }
 
 clone_repo() {
     cd ~
-    mkdir Resources
+    if [ ! -d Resources ]; then
+        mkdir Resources
+    fi
     cd Resources
-    git clone https://github.com/dhinman262/ansible.git
+    if [ ! -d ansible ]; then
+        git clone https://github.com/dhinman262/ansible.git
+    fi
 }
 sudo apt update
 ensure_ansible
