@@ -1,0 +1,18 @@
+- name: create /opt
+  become: yes
+  file:
+    path: /opt
+    state: directory
+    mode: '777'
+
+- name: install PyCharm Community
+  shell: |
+     cd /opt
+     wget https://download.jetbrains.com/python/pycharm-community-2020.2.1.tar.gz?_ga=2.107400514.1726497881.1599504160-1622105966.1599504160
+     tar -xvf pycharm*
+     rm -rf pycharm-*.tar.gz*
+     
+
+
+
+
