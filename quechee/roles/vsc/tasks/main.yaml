@@ -1,0 +1,23 @@
+# This is for investigating new stuff
+- name: Install gnome-keyring
+  become: yes
+  apt:
+    name: ['gnome-keyring']
+    state: present
+    update_cache: yes
+
+- name: create /opt
+  become: yes
+  file:
+    path: /opt
+    state: directory
+    mode: '777'
+
+- name: download Visual Studio .deb
+  get_url:
+    url: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+    dest: /opt/vsc.deb
+
+- name: Install a .deb package
+  apt:
+    deb: /opt/vsc.deb
