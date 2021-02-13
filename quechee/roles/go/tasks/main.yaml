@@ -39,6 +39,6 @@
   shell: |
      curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer > /opt/gvminstall.sh
      bash /opt/gvminstall.sh
-     source /home/dhinman262/.gvm/scripts/gvm
+     . /home/dhinman262/.gvm/scripts/gvm
   args:
      creates: /opt/gvminstall.sh

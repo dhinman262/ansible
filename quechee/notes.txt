@@ -1,0 +1,32 @@
+The python install in the bootstrap did not work: I had to do:
+
+sudo apt install python3
+sudo apt install python3-pip
+pip3 install diff-highlight
+sudo ln -s /usr/bin/python3 /usr/bin/python
+
+When doing the full quechee-playbook, it hit an error durring the apps step, on the download libreoffice step:
+
+fatal: [localhost]: FAILED! => {"changed": false, "dest": "/opt/LibreOffice_7.0.2_Linux_x86-64_deb.tar.gz", "msg": "Request failed", "response": "HTTP Error 404: Not Found", "state": "absent", "status_code": 404, "url": "https://download.documentfoundation.org/libreoffice/stable/7.0.2/deb/x86_64/LibreOffice_7.0.2_Linux_x86-64_deb.tar.gz"}
+
+It looks like 7.1.0 instead of 7.0.2
+
+
+Then install libreoffice failed:
+TASK [apps : Install libreoffice] ********************************************************************
+fatal: [localhost]: FAILED! => {"changed": true, "cmd": "cd /opt/LibreOffice_7.1.0.2_Linux_x86-64_deb/DEBS\n sudo dpkg -i *.deb", "delta": "0:00:00.024772", "end": "2021-02-13 15:40:55.586727", "msg": "non-zero return code", "rc": 2, "start": "2021-02-13 15:40:55.561955", "stderr": "/bin/sh: 1: cd: can't cd to /opt/LibreOffice_7.1.0.2_Linux_x86-64_deb/DEBS\ndpkg: error: cannot access archive '*.deb': No such file or directory", "stderr_lines": ["/bin/sh: 1: cd: can't cd to /opt/LibreOffice_7.1.0.2_Linux_x86-64_deb/DEBS", "dpkg: error: cannot access archive '*.deb': No such file or directory"], "stdout": "", "stdout_lines": []}
+        to retry, use: --limit @/home/dhinman262/Resources/ansible/quechee/quechee-playbook.retry
+
+There was a 2 that should be a 3
+
+Then the go install gvm 
+fatal: [localhost]: FAILED! => {"changed": true, "cmd": "curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer > /opt/gvminstall.sh\n bash /opt/gvminstall.sh\n source /home/dhinman262/.gvm/scripts/gvm", "delta": "0:00:01.338084", "end": "2021-02-13 15:54:55.621597", "msg": "non-zero return code", "rc": 127, "start": "2021-02-13 15:54:54.283513", "stderr": "/bin/sh: 3: source: not found", "stderr_lines": ["/bin/sh: 3: source: not found"], "stdout": "Cloning from https://github.com/moovweb/gvm.git to /root/.gvm\nCreated profile for existing install of Go at \"/usr/local/go\"\nInstalled GVM v1.0.22\n\nPlease restart your terminal session or to get started right away run\n `source /root/.gvm/scripts/gvm`", "stdout_lines": ["Cloning from https://github.com/moovweb/gvm.git to /root/.gvm", "Created profile for existing install of Go at \"/usr/local/go\"", "Installed GVM v1.0.22", "", "Please restart your terminal session or to get started right away run", " `source /root/.gvm/scripts/gvm`"]}
+
+The Bourne shell has .
+
+I will then just do the python role manually (by putting it into test-playbook.yaml)
+
+Okay; it seems to be okay here. Let me check
+
+
+
