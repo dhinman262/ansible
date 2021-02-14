@@ -28,5 +28,7 @@ I will then just do the python role manually (by putting it into test-playbook.y
 
 Okay; it seems to be okay here. Let me check
 
+* ??? Cloning the repos and adding the symlinks
+
 
 
