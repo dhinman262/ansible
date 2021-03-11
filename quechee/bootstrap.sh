@@ -29,10 +29,14 @@ ensure_git() {
 }
 
 ensure_python() {
-    if [ ! -f /usr/bin/python3 ]; then
-        sudo ln -s /usr/bin/python3 /usr/bin/python
+    #if [ ! -f /usr/bin/python3 ]; then
+    #    sudo ln -s /usr/bin/python3 /usr/bin/python
+    #fi
+    if [ ! -e /usr/bin/python ]; then
+	    sudo ln -s /usr/bin/python /usr/bin/python3
     fi
-    pip install diff-highlight
+    sudo apt-get install python3-pip
+    pip3 install diff-highlight
 }
 
 clone_repo() {
