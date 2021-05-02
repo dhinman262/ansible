@@ -2,7 +2,7 @@
 
 # Link in the basic files
 HOME=/home/dhinman262
-REPO=${HOME}/machines/quechee
+REPO=${HOME}/machines/bixby
 
 # Link up scripts
 if [ ! -e "${HOME}/scripts" ] ; then
