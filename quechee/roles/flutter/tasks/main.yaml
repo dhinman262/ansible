@@ -1,0 +1,48 @@
+---
+
+- name: discover development directory
+  stat: path=/home/dhinman262/development
+  register: developmentdir
+ 
+- name: Download Flutter SDK
+  get_url:
+    url: https://storage.googleapis.com/flutter_infra/releases/stable/linux/flutter_linux_2.0.6-stable.tar.xz
+    dest: /tmp/flutter.tar.xz
+  when: not developmentdir.stat.exists
+  
+- name: create ~/development
+  file:
+    path: /home/dhinman262/development
+    state: directory
+    mode: '777'
+  when: not developmentdir.stat.exists
+
+- name: Extract Flutter SDK
+  unarchive:
+    src: /tmp/flutter.tar.xz
+    dest: /home/dhinman262/development
+  when: not developmentdir.stat.exists
+
+- name: discover android studio
+  stat: path=/opt/android-studio
+  register: androidstudio
+
+- name: Download Android Studio
+  get_url:
+    url: https://redirector.gvt1.com/edgedl/android/studio/install/4.1.3.0/android-studio-ide-201.7199119-cros.deb
+    dest: /tmp/as.deb
+  when: not androidstudio.stat.exists
+  
+- name: Install Android Studio
+  become: yes
+  shell: |
+     cd /tmp
+     sudo dpkg -i as.deb
+  when: not androidstudio.stat.exists
+  
+- name: Flutter setup
+  shell: |
+     /home/dhinman262/development/flutter/bin/flutter precache
+     /home/dhinman262/development/flutter/bin/flutter doctor
+     
+     
