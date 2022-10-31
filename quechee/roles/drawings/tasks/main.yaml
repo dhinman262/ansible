@@ -1,0 +1,18 @@
+# This is for installing drawing apps
+- name: Install flatpak
+  become: yes
+  apt:
+    name: ['flatpak']
+    state: installed
+    update_cache: yes
+
+- name: Install flatpak hub
+  become: yes
+  command:
+    flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+- name: Install Krita
+  become: yes
+  command:
+    flatpak install flathub org.kde.krita
+    
