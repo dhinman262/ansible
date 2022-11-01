@@ -18,11 +18,17 @@
     name: ['audacity', 'brasero', 'filezilla', 'gparted', 'gscan2pdf', 'inkscape', 'vlc', 'wine', 'winetricks', 'wireshark']
     state: present
     update_cache: yes
-
+    
+- name: prepare eula 
+  debconf:
+    name: virtualbox-ext-pack
+    question: virtualbox-ext-pack/license
+    value: true
+    
 - name: Install the next wave
   become: yes
   apt:
-    name: ['handbrake', 'virtualbox', 'virtualbox-dkms', 'virtualbox-guest-additions-iso']
+    name: ['handbrake', 'virtualbox', 'virtualbox-dkms', 'virtualbox-guest-additions-iso', 'virtualbox-ext-pack']
     state: present
     update_cache: yes
 
