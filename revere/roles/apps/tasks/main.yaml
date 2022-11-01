@@ -23,6 +23,7 @@
   debconf:
     name: virtualbox-ext-pack
     question: virtualbox-ext-pack/license
+    vtype: bool
     value: true
     
 - name: Install the next wave
