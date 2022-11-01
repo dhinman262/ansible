@@ -38,6 +38,11 @@ if [[ ! -L ~/scripts ]]; then
     ln -s ${FROMDIR}/scripts scripts
 fi    
 
+# Symlink in the config directories
+if [[ ! -L ~/templates ]]; then
+    ln -s ${FROMDIR}/templates templates
+fi    
+
 # Symlink in ~/.ssh
 if [[ ! -L ~/.ssh ]] && [[ -d ${FROMDIR}/.ssh ]]; then
     cp ~/.ssh/* ${FROMDIR}/.ssh
