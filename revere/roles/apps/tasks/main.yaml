@@ -19,3 +19,10 @@
     state: present
     update_cache: yes
 
+- name: Install the next wave
+  become: yes
+  apt:
+    name: ['handbrake', 'virtualbox', 'virtualbox-dkms', 'virtualbox-ext-pack', 'virtualbox-guest-additions-iso']
+    state: present
+    update_cache: yes
+
