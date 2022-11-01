@@ -20,6 +20,17 @@ This will:
 
 - check out the ansible repo (using https)
 
+## Next: clone and link
+
+```
+cd ~/Resources/ansible
+git checkout revere
+git pull origin revere
+
+cd revere
+bash ./cloneAndLink.sh
+```
+
 ## Testing via Vagrant
 
 So:

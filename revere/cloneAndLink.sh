@@ -39,7 +39,7 @@ if [[ ! -L ~/scripts ]]; then
 fi    
 
 # Symlink in ~/.ssh
-if [[ ! -L ~/.ssh ]]; then
+if [[ ! -L ~/.ssh ]] && [[ -d ${FROMDIR}/.ssh ]]; then
     cp ~/.ssh/* ${FROMDIR}/.ssh
     rm -rf ~/.ssh
     chmod 0700 
