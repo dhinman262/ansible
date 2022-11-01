@@ -33,3 +33,6 @@
     state: present
     update_cache: yes
 
+- name: Install Chrome from the package directly
+  apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
