@@ -62,6 +62,7 @@ clone_repo() {
     cd Resources
     if [ ! -d ansible ]; then
         git clone https://github.com/dhinman262/ansible.git
+	(cd ansible; git remote add pgh git@github.com:dhinman262/ansible.git )
     fi
 }
 sudo apt update
