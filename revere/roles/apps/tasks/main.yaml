@@ -5,11 +5,17 @@
     state: present
     update_cache: yes
 
-# Install some missing apps
 - name: Install missing apps using apt
   become: yes
   apt:
     name: ['emacs', 'lsof', 'gimp', 'gimp-plugin-registry', 'python-pip', 'nemo', 'jq']
+    state: present
+    update_cache: yes
+
+- name: Install the basic apps from the list
+  become: yes
+  apt:
+    name: ['filezilla', 'gparted', 'gscan2pdf', 'inkscape', 'vlc', 'wine', 'winetricks', 'wireshark']
     state: present
     update_cache: yes
 
