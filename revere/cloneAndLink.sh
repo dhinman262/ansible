@@ -5,7 +5,7 @@ PGH_REPO=git@github.com:dhinman262
 # Clone Notes
 if [[ ! -e ~/Notes ]]; then
     echo "~/Notes does not exist"
-    (cd ~; git clone ${PGH_REPO}/Notes.git)
+    (cd ~; git clone ${PGH_REPO}/Notes.git; cd Notes; git remote add pgh ${PGH_REPO}/Notes.git )
 else
     echo "~/Notes exists"
 fi   
@@ -13,7 +13,7 @@ fi
 # Clone machines
 if [[ ! -e ~/machines ]]; then
     echo "~/machines does not exist"
-    (cd ~; git clone  ${PGH_REPO}/machines.git)
+    (cd ~; git clone  ${PGH_REPO}/machines.git; cd machines; git remote add pgh ${PGH_REPO}/machines.git )
 else
     echo "~/machines exists"
 fi   
