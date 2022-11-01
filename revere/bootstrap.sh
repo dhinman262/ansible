@@ -7,6 +7,9 @@ ensure_ansible() {
 }
 
 ensure_inventory() {
+    if [ ! -d /etc/ansible ]; then
+        sudo mkdir -p /etc/ansible
+    fi
     if [ ! -f inventory.yaml ]; then
         echo > inventory.yaml <<EOF
 ---
