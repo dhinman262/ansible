@@ -15,7 +15,7 @@
 - name: Install the basic apps from the list
   become: yes
   apt:
-    name: ['filezilla', 'gparted', 'gscan2pdf', 'inkscape', 'vlc', 'wine', 'winetricks', 'wireshark']
+    name: ['audacity', 'brasero', 'filezilla', 'gparted', 'gscan2pdf', 'inkscape', 'vlc', 'wine', 'winetricks', 'wireshark']
     state: present
     update_cache: yes
 
