@@ -1,15 +1,15 @@
 - name: Install common pre-requisites using apt
   become: yes
   apt:
-    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential', 'gimp', 'gimp-plugin-registry', 'gimp-python', 'python-pip', 'nemo', 'jq']
-    state: installed
+    name: ['curl', 'git', 'default-jdk', 'build-essential']
+    state: present
     update_cache: yes
 
 # Install some missing apps
 - name: Install missing apps using apt
   become: yes
   apt:
-    name: ['curl', 'git', 'emacs', 'lsof', 'default-jdk', 'build-essential', 'gimp', 'gimp-plugin-registry', 'gimp-python', 'python-pip', 'nemo', 'jq']
-    state: installed
+    name: ['emacs', 'lsof', 'gimp', 'gimp-plugin-registry', 'python-pip', 'nemo', 'jq']
+    state: present
     update_cache: yes
 
