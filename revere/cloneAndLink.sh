@@ -47,6 +47,5 @@ fi
 if [[ ! -L ~/.ssh ]] && [[ -d ${FROMDIR}/.ssh ]]; then
     cp ~/.ssh/* ${FROMDIR}/.ssh
     rm -rf ~/.ssh
-    chmod 0700 
     ln -s ${FROMDIR}/.ssh ~/.ssh
 fi  
