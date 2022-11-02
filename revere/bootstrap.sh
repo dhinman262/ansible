@@ -55,11 +55,18 @@ gen_key() {
     fi
 }
 
-clone_repo() {
-    cd ~
+
+ensure_resourcedir() {
     if [ ! -d ${RESOURCEDIR} ]; then
+        # If we can't write /opt, we need to fix it
+        if [ ! -w /opt ]; then
+            sudo  DEBIAN_FRONTEND=noninteractive chmod a+w /opt
+        fi
         mkdir -p ${RESOURCEDIR}
     fi
+}
+
+clone_repo() {
     cd ${RESOURCEDIR}
     if [ ! -d ansible ]; then
         git clone https://github.com/dhinman262/ansible.git
@@ -72,5 +79,6 @@ ensure_python
 ensure_inventory
 ensure_git
 gen_key
+ensure_resourcedir
 clone_repo
 

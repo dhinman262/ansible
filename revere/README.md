@@ -3,7 +3,10 @@
 To get the process started, run the bootstrap script:
 
 ```
-bash <(wget -qO - https://github.com/dhinman262/ansible/raw/revere/revere/bootstrap.sh)
+wget -qO - \
+    https://github.com/dhinman262/ansible/raw/revere/revere/bootstrap.sh \
+    > dlb.sh
+bash ./dlb.sh
 ```
 
 This will:
@@ -23,7 +26,7 @@ This will:
 ## Next: clone and link
 
 ```
-cd ~/Resources/ansible
+cd /opt/home/dhinman/Resources/ansible
 git checkout revere
 git pull origin revere
 
