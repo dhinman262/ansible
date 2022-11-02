@@ -61,7 +61,7 @@
 - name: Install wave 3
   become: yes
   apt:
-    name: ['calibre', 'calibre-bin', 'devede', 'htop', 'meld', 'openshot', 'openshot-doc', 'seahorse', 'gpg', 'gpg-agent', 'simplescreenrecorder']
+    name: ['calibre', 'calibre-bin', 'devede', 'htop', 'meld', 'seahorse', 'gpg', 'gpg-agent', 'simplescreenrecorder']
     state: present
     update_cache: yes
 
