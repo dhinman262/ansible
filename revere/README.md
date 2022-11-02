@@ -26,6 +26,10 @@ This will:
 ## Next: clone and link
 
 ```
+# We seem to need to get github in the known_hosts file
+# Let's capture the file before and after we do a log, and save away the key for github
+
+
 cd /opt/home/dhinman/Resources/ansible
 git checkout revere
 git pull origin revere

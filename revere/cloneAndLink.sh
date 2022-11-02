@@ -8,6 +8,14 @@ NOTESDIR=${BASEDIR}/Notes
 MACHINESDIR=${BASEDIR}/machines
 FROMDIR=${MACHINESDIR}/revere
 
+
+# Make sure github is added to known_hosts
+cat >> ~/.ssh/known_hosts <<EOF
+|1|kKu62dPA1AB1UUWeUOuCjWyM854=|GohwRR/CZNqMDGPgjOQeZG6L+iU= ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOMqqnkVzrm0SdG6UOoqKLsabgH5C9okWi0dh2l9GKJl
+|1|rHZ9DU/D8l3jCThRGuDxCrgqvfs=|zmA5mZy4x+PDalgfmwsoFsnhfSQ= ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==
+|1|EMSPNsJAHpjNUm0Mek3kE3Pe1Ec=|wFMCo/GzQeKQQiPD+fbkkn/Md6g= ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg=
+EOF
+
 # Clone Notes
 if [[ ! -e ${NOTESDIR} ]]; then
     echo "${NOTESDIR} does not exist"
