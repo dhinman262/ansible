@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -eu
+RESOURCEDIR=/opt/home/dhinman/Resources
 
 ensure_ansible() {
     sudo DEBIAN_FRONTEND=noninteractive apt install ansible
@@ -56,10 +57,10 @@ gen_key() {
 
 clone_repo() {
     cd ~
-    if [ ! -d Resources ]; then
-        mkdir Resources
+    if [ ! -d ${RESOURCEDIR} ]; then
+        mkdir -p ${RESOURCEDIR}
     fi
-    cd Resources
+    cd ${RESOURCEDIR}
     if [ ! -d ansible ]; then
         git clone https://github.com/dhinman262/ansible.git
 	(cd ansible; git remote add pgh git@github.com:dhinman262/ansible.git )

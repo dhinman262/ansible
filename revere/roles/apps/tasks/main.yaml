@@ -36,3 +36,20 @@
 - name: Install Chrome from the package directly
   apt:
     deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+- name: Install gnome-keyring
+  become: yes
+  apt:
+    name: ['gnome-keyring']
+    state: present
+    update_cache: yes
+
+- name: Install Visual Studio Code from a deb
+  apt:
+    deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+
+- name: Install veracrypt from a deb
+  apt:
+    deb: https://launchpad.net/veracrypt/trunk/1.25.9/+download/veracrypt-1.25.9-Debian-11-amd64.deb
+    
+
