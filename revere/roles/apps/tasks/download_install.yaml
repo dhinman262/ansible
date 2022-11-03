@@ -1,0 +1,28 @@
+- name: create /opt/tools/installers
+  become: yes
+  file:
+    path: /opt/tools/installers
+    state: directory
+    mode: '777'
+
+- name: Install 4kvideodownloader from the package directly
+  tags: tryout
+  apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+
+# - name: Download libreoffice
+#   get_url:
+#     url: https://download.documentfoundation.org/libreoffice/stable/7.1.0/deb/x86_64/LibreOffice_7.1.0_Linux_x86-64_deb.tar.gz
+#     dest: /opt/LibreOffice_7.1.0_Linux_x86-64_deb.tar.gz
+
+# - name: Unarchive libreoffice
+#   unarchive:
+#     src: /opt/LibreOffice_7.1.0_Linux_x86-64_deb.tar.gz
+#     dest: /opt
+
+# - name: Install libreoffice
+#   become: yes
+#   shell: |
+#      cd /opt/LibreOffice_7.1.0.3_Linux_x86-64_deb/DEBS
+#      sudo dpkg -i *.deb
