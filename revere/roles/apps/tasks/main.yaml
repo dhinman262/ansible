@@ -93,6 +93,6 @@
     update_cache: yes
 
 - name: Download installs
-  import_tasks: download_installs.yaml
-  
+  import_tasks: download_install.yaml
+
   
