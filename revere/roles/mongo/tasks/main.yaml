@@ -10,14 +10,14 @@
 - name: Import key for repo
   become: yes
   shell: |
-     wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
+     wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
 
 # sudo add-apt-repository 'deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main'
 - name: Enable the Mongodb repository
   become: yes
   apt_repository:
 #    repo: deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main
-    repo: deb https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/4.2 main
+    repo: deb https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/4.4 main
     state: present
 
 # Install and do an update_cache
