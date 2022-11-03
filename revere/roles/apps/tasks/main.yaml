@@ -65,3 +65,31 @@
     state: present
     update_cache: yes
 
+# The remaining missing apps from the applications diff are as follows:
+# 4kvideodownloader
+# asunder
+# ca.desrt.dconf-editor (package name dconf-editor)
+# mongodb-compass
+# mysql-workbench
+# openshot-qt
+# org.kde.kdenlive
+# pdfsam
+# vino-server (use tightvncserver)
+# xfburn
+# xplayer
+
+# Theses are the ones I know need manual attention
+# 4kvideodownloader 4kdownload.com
+# pdfsam basic pdfsam.org/download-pdfsam-basic
+# mongodb-compass (I have a whole role to get this guy)
+# mysql-workbench dev.mysql.com/downloads/workbench
+# openshot openshot.org/download (AppImage)
+
+- name: Install wave 4
+  become: yes
+  tags: tryout
+  apt:
+    name: ['asunder', 'dconf-editor', 'kdenlive', 'tightvncserver', 'xfburn', 'xplayer']
+    state: present
+    update_cache: yes
+
