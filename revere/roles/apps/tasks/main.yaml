@@ -87,9 +87,12 @@
 
 - name: Install wave 4
   become: yes
-  tags: tryout
   apt:
     name: ['asunder', 'dconf-editor', 'kdenlive', 'tightvncserver', 'xfburn', 'xplayer']
     state: present
     update_cache: yes
 
+- name: Download installs
+  import_tasks: download_installs.yaml
+  
+  
