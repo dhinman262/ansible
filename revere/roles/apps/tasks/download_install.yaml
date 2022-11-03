@@ -8,7 +8,7 @@
 - name: Install 4kvideodownloader from the package directly
   tags: tryout
   apt:
-    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    deb: https://dl.4kdownload.com/app/4kvideodownloader_4.21.7-1_amd64.deb
 
 
 # - name: Download libreoffice
