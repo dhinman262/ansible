@@ -7,26 +7,32 @@
 #    state: installed
 #    update_cache: yes
 
-- name: Import key for repo
-  become: yes
-  shell: |
-     wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
 
-# sudo add-apt-repository 'deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main'
-- name: Enable the Mongodb repository
-  become: yes
-  apt_repository:
-#    repo: deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main
-    repo: deb https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/4.4 main
-    state: present
+# mongodb doesn't seem to run natively on Mint 21; no version currently supports it.
+# NBD: run it in docker, like this:
+#    docker run -p 27017:27017 --name test-mongo mongo:4.2
+# 
 
-# Install and do an update_cache
-- name: Install mongodb-org
-  become: yes
-  apt:
-    name: ['mongodb-org']
-    state: present
-    update_cache: yes
+# - name: Import key for repo
+#   become: yes
+#   shell: |
+#      wget -qO - https://www.mongodb.org/static/pgp/server-4.4.asc | apt-key add -
+
+# # sudo add-apt-repository 'deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main'
+# - name: Enable the Mongodb repository
+#   become: yes
+#   apt_repository:
+# #    repo: deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main
+#     repo: deb https://repo.mongodb.org/apt/ubuntu jammy/mongodb-org/4.4 main
+#     state: present
+
+# # Install and do an update_cache
+# - name: Install mongodb-org
+#   become: yes
+#   apt:
+#     name: ['mongodb-org']
+#     state: present
+#     update_cache: yes
 # After this, can start mongo like this:
 #   mkdir ~/data
 #   mongod --dbpath ~/data
@@ -44,5 +50,6 @@
 - name: Install MongoDB Compass
   become: yes
   apt:
-    deb: https://downloads.mongodb.com/compass/mongodb-compass_1.20.4_amd64.deb
+#    deb: https://downloads.mongodb.com/compass/mongodb-compass_1.20.4_amd64.deb
+    deb: https://downloads.mongodb.com/compass/mongodb-compass_1.33.1_amd64.deb
 # After this, you can run mongodb-compass
