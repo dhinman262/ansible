@@ -1,0 +1,47 @@
+---
+
+#- name: Install mongo and compass
+#  become: yes
+#  apt:
+#    name: ['gpg']
+#    state: installed
+#    update_cache: yes
+
+- name: Import key for repo
+  become: yes
+  shell: |
+     wget -qO - https://www.mongodb.org/static/pgp/server-4.2.asc | apt-key add -
+
+# sudo add-apt-repository 'deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main'
+- name: Enable the Mongodb repository
+  become: yes
+  apt_repository:
+    repo: deb https://repo.mongodb.org/apt/debian buster/mongodb-org/4.2 main
+    state: present
+
+# Install and do an update_cache
+- name: Install mongodb-org
+  become: yes
+  apt:
+    name: ['mongodb-org']
+    state: installed
+    update_cache: yes
+# After this, can start mongo like this:
+#   mkdir ~/data
+#   mongod --dbpath ~/data
+#
+# To test: in a second window
+#   mongo
+#     db.mycol1.insert({a:1})
+#     db.mycol1.find()
+#     db.mycol1.drop()
+#     exit
+
+# Start mongodb and enable it on boot
+# sudo systemctl enable mongod --now
+
+- name: Install MongoDB Compass
+  become: yes
+  apt:
+    deb: https://downloads.mongodb.com/compass/mongodb-compass_1.20.4_amd64.deb
+# After this, you can run mongodb-compass
