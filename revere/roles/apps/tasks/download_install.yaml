@@ -10,11 +10,19 @@
     deb: https://dl.4kdownload.com/app/4kvideodownloader_4.21.7-1_amd64.deb
 
 
-- name: Install mysql-workbench from the package directly
-  tags: tryout
-  apt:
-    deb: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community_8.0.31-1ubuntu22.10_amd64.deb
+# Doesn't work; unmet dependencies
+# - name: Install mysql-workbench from the package directly
+#   apt:
+#     deb: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community_8.0.31-1ubuntu22.10_amd64.deb
 
+
+# Install works but app doesn't
+# - name: Install openshot-qt using apt
+#   become: yes
+#   apt:
+#     name: ['openshot-qt']
+#     state: present
+#     update_cache: yes
 
 # - name: Download libreoffice
 #   get_url:
@@ -31,3 +39,10 @@
 #   shell: |
 #      cd /opt/LibreOffice_7.1.0.3_Linux_x86-64_deb/DEBS
 #      sudo dpkg -i *.deb
+
+- name: Install pdfsam from the package directly
+  tags: tryout
+  apt:
+    deb: https://github.com/torakiki/pdfsam/releases/download/v4.3.4/pdfsam_4.3.4-1_amd64.deb
+
+
