@@ -6,9 +6,14 @@
     mode: '777'
 
 - name: Install 4kvideodownloader from the package directly
-  tags: tryout
   apt:
     deb: https://dl.4kdownload.com/app/4kvideodownloader_4.21.7-1_amd64.deb
+
+
+- name: Install mysql-workbench from the package directly
+  tags: tryout
+  apt:
+    deb: https://dev.mysql.com/downloads/file/?id=515300
 
 
 # - name: Download libreoffice
