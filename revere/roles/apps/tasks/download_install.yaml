@@ -13,7 +13,7 @@
 - name: Install mysql-workbench from the package directly
   tags: tryout
   apt:
-    deb: https://dev.mysql.com/downloads/file/?id=515300
+    deb: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community_8.0.31-1ubuntu22.10_amd64.deb
 
 
 # - name: Download libreoffice
