@@ -1,3 +1,10 @@
+- name: create /opt/tools/installers
+  become: yes
+  file:
+    path: /opt/tools/installers
+    state: directory
+    mode: '777'
+
 - name: Install some commands using apt wave 1
   become: yes
   apt:
@@ -7,8 +14,35 @@
 
 - name: Install some commands using apt wave 2
   become: yes
-  tags: tryout
   apt:
     name: ['lame', 'mp3blaster', 'mysql-client', 'mongocli', 'nmap', 'vagrant']
     state: present
     update_cache: yes
+
+- name: Install some commands using apt wave 3
+  become: yes
+  tags: tryout
+  apt:
+    name: ['texinfo']
+    state: present
+    update_cache: yes
+
+# Install git-lfs
+- name: Download git-lfs
+  tags: tryout
+  get_url:
+    url: https://github.com/git-lfs/git-lfs/releases/download/v3.2.0/git-lfs-linux-amd64-v3.2.0.tar.gz
+    dest: /opt/tools/installers/gitlfs.tgz
+
+- name: Unarchive git-lfs
+  tags: tryout
+  unarchive:
+    src: /opt/tools/installers/gitlfs.tgz
+    dest: /opt/tools/installers
+
+# - name: Install libreoffice
+#   become: yes
+#   shell: |
+#      cd /opt/LibreOffice_7.1.0.3_Linux_x86-64_deb/DEBS
+#      sudo dpkg -i *.deb
+
