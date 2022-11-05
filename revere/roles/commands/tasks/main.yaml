@@ -1,0 +1,7 @@
+- name: Install some commands using apt
+  become: yes
+  tags: tryout
+  apt:
+    name: ['default-jre', 'samba', 'gpart', 'gparted', 'hddtemp', 'enchant']
+    state: present
+    update_cache: yes

@@ -4,5 +4,7 @@
   roles:
   - apps
   - mongo
+  - commands
+#  - docker
   
   
