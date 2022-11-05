@@ -21,8 +21,9 @@
 
 - name: Install some commands using apt wave 3
   become: yes
+  tags: tryout
   apt:
-    name: ['texinfo']
+    name: ['texinfo', 'exfatutils', 'gawk', 'kdoctools5']
     state: present
     update_cache: yes
 
@@ -38,7 +39,6 @@
     dest: /opt/tools/installers
 
 - name: Install git-lfs
-  tags: tryout
   become: yes
   shell: |
      cd /opt/tools/installers/git-lfs-3.2.0
