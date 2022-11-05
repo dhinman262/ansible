@@ -2,6 +2,6 @@
   become: yes
   tags: tryout
   apt:
-    name: ['default-jre', 'samba', 'gpart', 'gparted', 'enchant', 'ffmpeg']
+    name: ['default-jre', 'samba', 'gpart', 'gparted', 'ffmpeg', 'kdiff3']
     state: present
     update_cache: yes
