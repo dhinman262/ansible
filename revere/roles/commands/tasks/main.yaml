@@ -1,7 +1,14 @@
 - name: Install some commands using apt wave 1
   become: yes
-  tags: tryout
   apt:
     name: ['default-jre', 'samba', 'gpart', 'gparted', 'ffmpeg', 'kdiff3']
+    state: present
+    update_cache: yes
+
+- name: Install some commands using apt wave 2
+  become: yes
+  tags: tryout
+  apt:
+    name: ['lame', 'mp3blaster', 'mysql-client', 'mongocli', 'nmap', 'vagrant']
     state: present
     update_cache: yes
