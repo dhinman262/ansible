@@ -41,8 +41,12 @@
 #      sudo dpkg -i *.deb
 
 - name: Install pdfsam from the package directly
-  tags: tryout
   apt:
     deb: https://github.com/torakiki/pdfsam/releases/download/v4.3.4/pdfsam_4.3.4-1_amd64.deb
 
 
+- name: install Miniconda
+  tags: tryout
+  shell: |
+     cd /opt
+     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
