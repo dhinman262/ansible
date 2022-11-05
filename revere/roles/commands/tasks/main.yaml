@@ -1,7 +1,7 @@
-- name: Install some commands using apt
+- name: Install some commands using apt wave 1
   become: yes
   tags: tryout
   apt:
-    name: ['default-jre', 'samba', 'gpart', 'gparted', 'hddtemp', 'enchant']
+    name: ['default-jre', 'samba', 'gpart', 'gparted', 'enchant', 'ffmpeg']
     state: present
     update_cache: yes
