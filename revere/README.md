@@ -1,6 +1,9 @@
 # Provisioning for my new desktop machine revere
 
-To get the process started, run the bootstrap script:
+First, I have to have Linux Mint 21 installed, a working network connection, and the revere ssh key installed on the box.
+
+
+Then, run the bootstrap script:
 
 ```
 wget -qO - \
@@ -26,19 +29,23 @@ This will:
 ## Next: clone and link
 
 ```
-# We seem to need to get github in the known_hosts file
-# Let's capture the file before and after we do a log, and save away the key for github
-
+# We seem to need to get github in the known_hosts file; let's get it now
 
 cd /opt/home/dhinman/Resources/ansible
-git checkout revere
-git pull origin revere
+git remote add pgh git@github.com:dhinman262/ansible.git
+git fetch pgh
+git checkout --track pgh/revere
 
 cd revere
 bash ./cloneAndLink.sh
 ```
 
-## Testing via Vagrant
+## Next: install everything using ansible
+```
+sudo ansible-playbook -vvvv revere-playbook.yaml > ansible.log
+```
+
+## Testing via Vagrant (not sure this actually works)
 
 So:
 
