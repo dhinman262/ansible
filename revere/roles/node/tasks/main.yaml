@@ -17,7 +17,6 @@
 
 - name: install nvm
   become: yes
-  shell: /bin/bash /opt/tools/installers/nvminstall.sh
   when: nvm_dir.stat.exists == False
 
 # This was the old way; the new way first adds a repo to the system
