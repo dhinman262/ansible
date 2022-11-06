@@ -29,19 +29,11 @@
 #   shell: |
 #       if [ ! -e /usr/bin/go ] ; then ln -s /usr/local/go/bin/go /usr/bin/go; fi
 
-- name: Add golang APT repository
-  become: yes
-  apt_repository:
-    validate_certs: no
-    repo: 'ppa:longsleep/golang-backports'
-    state: present
-    update_cache: yes
-
 
 - name: install golang and bison
   become: yes
   apt:
-    name: ['golang-go', 'bison']
+    name: ['golang', 'bison']
     state: present
     update_cache: yes
 
