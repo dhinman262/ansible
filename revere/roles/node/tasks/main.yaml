@@ -16,6 +16,7 @@
   when: nvm_dir.stat.exists == False
 
 - name: install nvm
+  become: no
   shell: /bin/bash /opt/tools/installers/nvminstall.sh
   when: nvm_dir.stat.exists == False
 
