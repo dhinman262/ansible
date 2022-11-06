@@ -23,7 +23,7 @@
   become: yes
   tags: tryout
   apt:
-    name: ['texinfo', 'exfatutils', 'gawk', 'kdoctools5']
+    name: ['texinfo', 'gawk', 'kdoctools5']
     state: present
     update_cache: yes
 
