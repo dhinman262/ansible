@@ -8,7 +8,7 @@
 - name: Install missing apps using apt
   become: yes
   apt:
-    name: ['emacs', 'lsof', 'gimp', 'gimp-plugin-registry', 'python-pip', 'nemo', 'jq']
+    name: ['emacs', 'lsof', 'gimp', 'gimp-plugin-registry', 'python-pip', 'nemo', 'jq', 'util-linux']
     state: present
     update_cache: yes
 
