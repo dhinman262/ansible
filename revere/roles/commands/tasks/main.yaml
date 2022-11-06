@@ -15,7 +15,7 @@
 - name: Install some commands using apt wave 2
   become: yes
   apt:
-    name: ['lame', 'mp3blaster', 'mysql-client', 'mongocli', 'nmap', 'vagrant']
+    name: ['lame', 'mp3blaster', 'mysql-client', 'nmap', 'vagrant']
     state: present
     update_cache: yes
 

@@ -50,6 +50,10 @@
 - name: Install MongoDB Compass
   become: yes
   apt:
-#    deb: https://downloads.mongodb.com/compass/mongodb-compass_1.20.4_amd64.deb
     deb: https://downloads.mongodb.com/compass/mongodb-compass_1.33.1_amd64.deb
 # After this, you can run mongodb-compass
+
+- name: Install MongoDB CLI
+  become: yes
+  apt:
+    deb: https://fastdl.mongodb.org/mongocli/mongocli_1.27.0_linux_x86_64.deb
