@@ -23,7 +23,7 @@
   become: yes
   tags: tryout
   apt:
-    name: ['texinfo', 'gawk', 'kdoctools5']
+    name: ['texinfo', 'gawk', 'kdoctools5', 'xtightvncviewer']
     state: present
     update_cache: yes
 
