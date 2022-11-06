@@ -1,7 +1,7 @@
 - name: create /opt/tools/installers
   become: yes
   file:
-    path: /opt
+    path: /opt/tools/installers
     state: directory
     mode: '777'
 
@@ -37,10 +37,9 @@
     state: present
     update_cache: yes
 
+# This gets the installer, but ansible keeps running it as root
 - name: install gvm
   shell: |
      curl -s -S -L https://raw.githubusercontent.com/moovweb/gvm/master/binscripts/gvm-installer > /opt/tools/installers/gvminstall.sh
-     bash /opt/tools/installers/gvminstall.sh
-     . /home/dhinman/.gvm/scripts/gvm
   args:
      creates: /opt/tools/installers/gvminstall.sh

@@ -21,7 +21,6 @@
 
 - name: Install some commands using apt wave 3
   become: yes
-  tags: tryout
   apt:
     name: ['texinfo', 'gawk', 'kdoctools5', 'xtightvncviewer']
     state: present

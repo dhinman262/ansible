@@ -1,7 +1,15 @@
 ---
 
+- name: create /opt/tools/installers
+  become: yes
+  file:
+    path: /opt/tools/installers
+    state: directory
+    mode: '777'
+
+
 - name: Install rustup
   shell: |
-      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /tmp/rustsetup.sh
-      sh /tmp/rustsetup.sh -y      
+      curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs > /opt/tools/installers/rustsetup.sh
+      sh /opt/tools/installers/rustsetup.sh -y      
       
