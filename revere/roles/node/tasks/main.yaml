@@ -31,7 +31,7 @@
   become: yes
   apt:
     name: ['yarn']
-    state: installed
+    state: present
     update_cache: yes
   
 - name: Get Yarn apt key
