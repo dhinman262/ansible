@@ -2,6 +2,8 @@
 
 First, I have to have Linux Mint 21 installed, a working network connection, and the revere ssh key installed on the box.
 
+Beyond the basics, I installed openssh-server and gparted to do some of the initial setup and make it easier to access things.
+
 
 Then, run the bootstrap script:
 
@@ -32,7 +34,6 @@ This will:
 # We seem to need to get github in the known_hosts file; let's get it now
 
 cd /opt/home/dhinman/Resources/ansible
-git remote add pgh git@github.com:dhinman262/ansible.git
 git fetch pgh
 git checkout --track pgh/revere
 
