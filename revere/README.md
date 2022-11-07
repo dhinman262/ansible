@@ -9,7 +9,7 @@ Then, run the bootstrap script:
 
 ```
 wget -qO - \
-    https://github.com/dhinman262/ansible/raw/revere/revere/bootstrap.sh \
+    https://github.com/dhinman262/ansible/raw/master/revere/bootstrap.sh \
     > dlb.sh
 bash ./dlb.sh
 ```
@@ -46,6 +46,11 @@ bash ./cloneAndLink.sh
 sudo ansible-playbook -vvvv revere-playbook.yaml > ansible.log
 ```
 
+## Next: Do the work afterwards
+
+- Update all the packages
+
+- 
 ## Testing via Vagrant (not sure this actually works)
 
 So:
