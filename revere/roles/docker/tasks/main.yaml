@@ -1,0 +1,47 @@
+---
+
+# This was the old way: before podman
+# Tasks for docker-ce
+
+# - name: Add Docker GPG key
+#   become: yes
+#   apt_key: url=https://download.docker.com/linux/debian/gpg
+
+# - name: Install prerequisite packages
+#   become: yes
+#   apt:
+#     name: ['apt-transport-https','ca-certificates','curl','gnupg2','software-properties-common']
+#     state: present
+#     update_cache: yes
+
+# - name: Add Docker APT repository
+#   become: yes
+#   apt_repository:
+#     repo: deb [arch=amd64] https://download.docker.com/linux/debian {{ansible_distribution_release}} stable
+
+# - name: Install docker-ce
+#   become: yes
+#   apt:
+#     name: ['docker-ce']
+#     state: present
+#     update_cache: yes
+
+# # Tasks for docker-compose
+# - name: Install prerequisites
+#   become: yes
+#   apt:
+#     name: ['python3-pip', 'python3-setuptools', 'virtualenv']
+#     update_cache: yes
+
+# - name: Install docker-compose
+#   pip:
+#     name: docker-compose
+
+
+# This is the new way: with podman
+# Tasks for docker via podman
+- name: Install podman
+  become: yes
+  apt:
+    name: ['podman', 'podman-docker', 'docker-compose']
+    update_cache: yes

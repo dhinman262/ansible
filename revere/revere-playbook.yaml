@@ -1,0 +1,14 @@
+---
+
+- hosts: localhost
+  roles:
+  - apps
+  - mongo
+  - commands
+  - docker
+  - node
+  - go
+  - rust
+
+  
+  

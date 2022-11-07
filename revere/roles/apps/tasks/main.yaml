@@ -1,0 +1,99 @@
+- name: Install common pre-requisites using apt
+  become: yes
+  apt:
+    name: ['curl', 'git', 'default-jdk', 'build-essential']
+    state: present
+    update_cache: yes
+
+- name: Install missing apps using apt
+  become: yes
+  apt:
+    name: ['emacs', 'lsof', 'gimp', 'gimp-plugin-registry', 'python-pip', 'nemo', 'jq', 'util-linux']
+    state: present
+    update_cache: yes
+
+- name: Install the basic apps from the list
+  become: yes
+  apt:
+    name: ['audacity', 'brasero', 'filezilla', 'gparted', 'gscan2pdf', 'inkscape', 'vlc', 'wine', 'winetricks', 'wireshark']
+    state: present
+    update_cache: yes
+    
+- name: prepare eula 
+  debconf:
+    name: virtualbox-ext-pack
+    question: virtualbox-ext-pack/license
+    vtype: boolean
+    value: true
+    
+- name: Install the next wave
+  become: yes
+  apt:
+    name: ['handbrake', 'virtualbox', 'virtualbox-dkms', 'virtualbox-guest-additions-iso', 'virtualbox-ext-pack']
+    state: present
+    update_cache: yes
+
+- name: Install Chrome from the package directly
+  apt:
+    deb: https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+
+# This might be needed for the VSC install
+- name: Install gnome-keyring
+  become: yes
+  apt:
+    name: ['gnome-keyring']
+    state: present
+    update_cache: yes
+
+- name: Install Visual Studio Code from a deb
+  apt:
+    deb: https://code.visualstudio.com/sha/download?build=stable&os=linux-deb-x64
+
+- name: Install veracrypt from a deb
+  apt:
+    deb: https://launchpad.net/veracrypt/trunk/1.25.9/+download/veracrypt-1.25.9-Debian-11-amd64.deb
+    
+
+- name: Install git-delta from a deb
+  apt:
+    deb: https://github.com/dandavison/delta/releases/download/0.14.0/git-delta_0.14.0_amd64.deb
+    
+
+- name: Install wave 3
+  become: yes
+  apt:
+    name: ['calibre', 'calibre-bin', 'devede', 'htop', 'meld', 'seahorse', 'gpg', 'gpg-agent', 'simplescreenrecorder']
+    state: present
+    update_cache: yes
+
+# The remaining missing apps from the applications diff are as follows:
+# 4kvideodownloader
+# asunder
+# ca.desrt.dconf-editor (package name dconf-editor)
+# mongodb-compass
+# mysql-workbench
+# openshot-qt
+# org.kde.kdenlive
+# pdfsam
+# vino-server (use tightvncserver)
+# xfburn
+# xplayer
+
+# Theses are the ones I know need manual attention
+# 4kvideodownloader 4kdownload.com
+# pdfsam basic pdfsam.org/download-pdfsam-basic
+# mongodb-compass (I have a whole role to get this guy)
+# mysql-workbench dev.mysql.com/downloads/workbench
+# openshot openshot.org/download (AppImage)
+
+- name: Install wave 4
+  become: yes
+  apt:
+    name: ['asunder', 'dconf-editor', 'kdenlive', 'tightvncserver', 'xfburn', 'xplayer']
+    state: present
+    update_cache: yes
+
+- name: Download installs
+  import_tasks: download_install.yaml
+
+  

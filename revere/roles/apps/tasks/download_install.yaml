@@ -1,0 +1,51 @@
+- name: create /opt/tools/installers
+  become: yes
+  file:
+    path: /opt/tools/installers
+    state: directory
+    mode: '777'
+
+- name: Install 4kvideodownloader from the package directly
+  apt:
+    deb: https://dl.4kdownload.com/app/4kvideodownloader_4.21.7-1_amd64.deb
+
+
+# Doesn't work; unmet dependencies
+# - name: Install mysql-workbench from the package directly
+#   apt:
+#     deb: https://dev.mysql.com/get/Downloads/MySQLGUITools/mysql-workbench-community_8.0.31-1ubuntu22.10_amd64.deb
+
+
+# Install works but app doesn't
+# - name: Install openshot-qt using apt
+#   become: yes
+#   apt:
+#     name: ['openshot-qt']
+#     state: present
+#     update_cache: yes
+
+# - name: Download libreoffice
+#   get_url:
+#     url: https://download.documentfoundation.org/libreoffice/stable/7.1.0/deb/x86_64/LibreOffice_7.1.0_Linux_x86-64_deb.tar.gz
+#     dest: /opt/LibreOffice_7.1.0_Linux_x86-64_deb.tar.gz
+
+# - name: Unarchive libreoffice
+#   unarchive:
+#     src: /opt/LibreOffice_7.1.0_Linux_x86-64_deb.tar.gz
+#     dest: /opt
+
+# - name: Install libreoffice
+#   become: yes
+#   shell: |
+#      cd /opt/LibreOffice_7.1.0.3_Linux_x86-64_deb/DEBS
+#      sudo dpkg -i *.deb
+
+- name: Install pdfsam from the package directly
+  apt:
+    deb: https://github.com/torakiki/pdfsam/releases/download/v4.3.4/pdfsam_4.3.4-1_amd64.deb
+
+
+- name: install Miniconda
+  shell: |
+     cd /opt
+     wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh

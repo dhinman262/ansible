@@ -1,0 +1,46 @@
+- name: create /opt/tools/installers
+  become: yes
+  file:
+    path: /opt/tools/installers
+    state: directory
+    mode: '777'
+
+- name: Install some commands using apt wave 1
+  become: yes
+  apt:
+    name: ['default-jre', 'samba', 'gpart', 'gparted', 'ffmpeg', 'kdiff3']
+    state: present
+    update_cache: yes
+
+- name: Install some commands using apt wave 2
+  become: yes
+  apt:
+    name: ['lame', 'mp3blaster', 'mysql-client', 'nmap', 'vagrant']
+    state: present
+    update_cache: yes
+
+- name: Install some commands using apt wave 3
+  become: yes
+  apt:
+    name: ['texinfo', 'gawk', 'kdoctools5', 'xtightvncviewer']
+    state: present
+    update_cache: yes
+
+# Install git-lfs
+- name: Download git-lfs
+  get_url:
+    url: https://github.com/git-lfs/git-lfs/releases/download/v3.2.0/git-lfs-linux-amd64-v3.2.0.tar.gz
+    dest: /opt/tools/installers/gitlfs.tgz
+
+- name: Unarchive git-lfs
+  unarchive:
+    src: /opt/tools/installers/gitlfs.tgz
+    dest: /opt/tools/installers
+
+- name: Install git-lfs
+  become: yes
+  shell: |
+     cd /opt/tools/installers/git-lfs-3.2.0
+     sudo ./install.sh
+
+
