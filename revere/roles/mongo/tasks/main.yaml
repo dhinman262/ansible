@@ -55,7 +55,6 @@
 
 - name: Install MongoDB shell
   become: yes
-  tags: tryout
   apt:
     deb: https://downloads.mongodb.com/compass/mongodb-mongosh_1.6.0_amd64.deb
  

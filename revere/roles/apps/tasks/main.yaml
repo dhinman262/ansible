@@ -93,6 +93,14 @@
     state: present
     update_cache: yes
 
+- name: Install wave 5
+  become: yes
+  tags: tryout
+  apt:
+    name: ['xfce4', 'xfce4-goodies']
+    state: present
+    update_cache: yes
+
 - name: Download installs
   import_tasks: download_install.yaml
 
