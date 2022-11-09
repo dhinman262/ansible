@@ -95,7 +95,6 @@
 
 - name: Install wave 5
   become: yes
-  tags: tryout
   apt:
     name: ['xfce4', 'xfce4-goodies']
     state: present
