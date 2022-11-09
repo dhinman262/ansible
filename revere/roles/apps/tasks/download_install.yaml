@@ -69,7 +69,6 @@
     dest: /opt/tools/installers/podman-desktop.tgz
 
 - name: create /opt/tools/podman-desktop
-  tags: tryout
   become: yes
   file:
     path: /opt/tools/podman-desktop
@@ -78,8 +77,14 @@
 
 
 - name: Unarchive podman desktop
-  tags: tryout
   unarchive:
     src: /opt/tools/installers/podman-desktop.tgz
     dest: /opt/tools/podman-desktop
 
+- name: Install podman desktop
+  tags: tryout
+  become: yes
+  shell: |
+     cd /opt/tools/podman-desktop
+     sudo mv podman-desktop-0.9.1/* .
+     sudo rm -rf podman-desktop-0.9.1
