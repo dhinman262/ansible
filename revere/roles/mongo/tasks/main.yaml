@@ -53,7 +53,7 @@
     deb: https://downloads.mongodb.com/compass/mongodb-compass_1.33.1_amd64.deb
 # After this, you can run mongodb-compass
 
-- name: Install MongoDB CLI
+- name: Install MongoDB shell
   become: yes
   tags: tryout
   apt:
