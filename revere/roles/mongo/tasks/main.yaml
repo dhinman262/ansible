@@ -55,5 +55,7 @@
 
 - name: Install MongoDB CLI
   become: yes
+  tags: tryout
   apt:
-    deb: https://fastdl.mongodb.org/mongocli/mongocli_1.27.0_linux_x86_64.deb
+    deb: https://downloads.mongodb.com/compass/mongodb-mongosh_1.6.0_amd64.deb
+ 
