@@ -49,3 +49,32 @@
   shell: |
      cd /opt
      wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+
+- name: Install du-dust from the package directly
+  tags: tryout
+  apt:
+    deb: https://github.com/bootandy/dust/releases/download/v0.8.3/du-dust_0.8.3_amd64.deb
+
+- name: install bat from the package directly
+  tags: tryout
+  apt:
+    deb: https://github.com/sharkdp/bat/releases/download/v0.22.1/bat_0.22.1_amd64.deb
+
+- name: install ripgrep from the package directly
+  tags: tryout
+  apt:
+    deb: https://github.com/BurntSushi/ripgrep/releases/download/13.0.0/ripgrep_13.0.0_amd64.deb
+
+# This is for podman desktop
+- name: Download podman desktop
+  tags: tryout
+  get_url:
+    url: https://github.com/containers/podman-desktop/releases/download/v0.9.1/podman-desktop-0.9.1.tar.gz
+    dest: /opt/tools/installers/podman-desktop.tgz
+
+- name: Unarchive podman desktop
+  tags: tryout
+  unarchive:
+    src: /opt/tools/installers/podman-desktop.tgz
+    dest: /opt/tools/podman_desktop
+
