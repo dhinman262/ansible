@@ -17,7 +17,7 @@
     group: sambashare
     home: /home/share/smbguest
     name: smbguest
-    password: "{{ echo SAMBA_PASSWORD | password_hash('sha512') }}"
+    password: "{{ SAMBA_PASSWORD_HASHED }}"
     shell: /usr/sbin/nologin
   when: smbguest_user_exists.rc == 1
 # https://stackoverflow.com/questions/44762488/non-interactive-samba-user-creation-via-ansible
