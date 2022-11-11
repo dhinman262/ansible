@@ -7,6 +7,8 @@
 - name: Check if smbguest exists in /etc/passwd
   shell: "grep smbguest /etc/passwd"
   register: smbguest_user_exists
+  failed_when: "smbguest_user_exists.rc == 2"
+  check_mode: no
 
 # Create the smbguest user
 - name: "Create smbguest user"
