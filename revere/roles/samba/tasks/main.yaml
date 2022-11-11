@@ -1,0 +1,30 @@
+- include_vars: ../vars/main.yaml
+
+# Create the home directory for smbguest, and set its mode
+
+# Create the home directory for smbadmin, and set its mode
+
+- name: Check if smbguest exists in /etc/passwd
+  shell: grep smbguest /etc/passwd
+  register: smbguest_user_exists
+
+# Create the smbguest user
+- name: "Create smbguest user"
+  user:
+    group: sambashare
+    home: /home/share/smbguest
+    name: smbguest
+    password: "{{ SAMBA_PASSWORD | password_hash('sha512') }}"
+    shell: /usr/sbin/nologin
+  when: smbguest_user_exists.stdout_lines.count == 0
+# https://stackoverflow.com/questions/44762488/non-interactive-samba-user-creation-via-ansible
+
+# Create the smbadmin user
+
+# Put smbguest into the samba password file, and enable it
+
+- name: Illustrate value of encrypted variable
+  shell: |
+    echo "The following line has the variable in in"
+    echo " === {{ SAMBA_PASSWORD }} ==="
+
