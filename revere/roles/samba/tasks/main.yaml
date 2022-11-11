@@ -5,7 +5,7 @@
 # Create the home directory for smbadmin, and set its mode
 
 - name: Check if smbguest exists in /etc/passwd
-  shell: grep smbguest /etc/passwd
+  shell: grep -i smbguest /etc/passwd
   register: smbguest_user_exists
 
 # Create the smbguest user
