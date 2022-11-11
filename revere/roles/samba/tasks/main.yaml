@@ -10,6 +10,7 @@
 
 # Create the smbguest user
 - name: "Create smbguest user"
+  become: yes
   user:
     group: sambashare
     home: /home/share/smbguest
