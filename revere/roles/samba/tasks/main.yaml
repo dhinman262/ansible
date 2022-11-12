@@ -1,16 +1,12 @@
 - include_vars: ../vars/main.yaml
 
-# Create the home directory for smbguest, and set its mode
-
-# Create the home directory for smbadmin, and set its mode
-
+# Set up smbguest
 - name: Check if smbguest exists in /etc/passwd
   shell: "grep smbguest /etc/passwd"
   register: smbguest_user_exists
   failed_when: "smbguest_user_exists.rc == 2"
   check_mode: no
 
-# Create the smbguest user
 - name: "Create smbguest user"
   become: yes
   user:
@@ -20,7 +16,6 @@
     password: "{{ SAMBA_PASSWORD_HASHED }}"
     shell: /usr/sbin/nologin
   when: smbguest_user_exists.rc == 1
-# https://stackoverflow.com/questions/44762488/non-interactive-samba-user-creation-via-ansible
 
 - name: "Set modes on smbguest home"
   become: yes
@@ -33,12 +28,32 @@
   become: yes
   shell: "printf '{{ SAMBA_PASSWORD }}\n{{ SAMBA_PASSWORD }}\n' | smbpasswd -a smbguest"
 
-# Create the smbadmin user
+# Set up smbadmin
+- name: Check if smbadmin exists in /etc/passwd
+  shell: "grep smbadmin /etc/passwd"
+  register: smbadmin_user_exists
+  failed_when: "smbadmin_user_exists.rc == 2"
+  check_mode: no
 
-# Put smbguest into the samba password file, and enable it
+- name: "Create smbadmin user"
+  become: yes
+  user:
+    group: sambashare
+    home: /home/share/smbadmin
+    name: smbadmin
+    password: "{{ SAMBA_PASSWORD_HASHED }}"
+    shell: /usr/sbin/nologin
+  when: smbadmin_user_exists.rc == 1
 
-- name: Illustrate value of encrypted variable
-  shell: |
-    echo "The following line has the variable in in"
-    echo " === {{ SAMBA_PASSWORD }} ==="
+- name: "Set modes on smbadmin home"
+  become: yes
+  file:
+    path: /home/share/smbadmin
+    state: directory
+    mode: '2770'
+    
+- name: "set samba password for smbadmin"
+  become: yes
+  shell: "printf '{{ SAMBA_PASSWORD }}\n{{ SAMBA_PASSWORD }}\n' | smbpasswd -a smbadmin"
+
 
