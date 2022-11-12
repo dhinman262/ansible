@@ -1,5 +1,14 @@
 - include_vars: ../vars/main.yaml
 
+- name: "create share"
+  become: yes
+  file:
+    path: /home/share
+    state: directory
+    group: sambagroup
+    mode: '2770'
+    
+
 # Set up smbguest
 - name: Check if smbguest exists in /etc/passwd
   shell: "grep smbguest /etc/passwd"
@@ -61,7 +70,7 @@
   become: yes
   ansible.builtin.template:
     src: ../files/smb.conf
-    dest: /tmp/smb.conf
+    dest: /etc/samba/smb.conf
     owner: root
     group: root
     mode: '644'
