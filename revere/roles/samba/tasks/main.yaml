@@ -31,7 +31,7 @@
     
 - name: "set samba password for smbguest"
   become: yes
-  shell: "printf 'smbguest\n{{ SAMBA_PASSWORD }}\n' | smbpasswd -a smbguest"
+  shell: "printf '{{ SAMBA_PASSWORD }}\n{{ SAMBA_PASSWORD }}\n' | smbpasswd -a smbguest"
 
 # Create the smbadmin user
 
