@@ -56,4 +56,12 @@
   become: yes
   shell: "printf '{{ SAMBA_PASSWORD }}\n{{ SAMBA_PASSWORD }}\n' | smbpasswd -a smbadmin"
 
-
+# Template in the config file
+- name: Template a file, using symbolic modes (equivalent to 0644)
+  become: yes
+  ansible.builtin.template:
+    src: ../files/smb.conf
+    dest: /tmp/smb.conf
+    owner: root
+    group: root
+    mode: '644'
