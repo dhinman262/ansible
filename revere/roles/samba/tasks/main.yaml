@@ -5,7 +5,7 @@
   file:
     path: /home/share
     state: directory
-    group: sambagroup
+    group: sambashare
     mode: '2770'
     
 
