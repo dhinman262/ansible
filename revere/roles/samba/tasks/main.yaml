@@ -22,6 +22,17 @@
   when: smbguest_user_exists.rc == 1
 # https://stackoverflow.com/questions/44762488/non-interactive-samba-user-creation-via-ansible
 
+- name: "Set modes on smbguest home"
+  become: yes
+  file:
+    path: /home/share/smbguest
+    state: directory
+    mode: '2770'
+    
+- name: "set samba password for smbguest"
+  become: yes
+  shell: "printf '{{smbguest\n{{ SAMBA_PASSWORD }}\n' | smbpasswd -a -e smbguest"
+
 # Create the smbadmin user
 
 # Put smbguest into the samba password file, and enable it
