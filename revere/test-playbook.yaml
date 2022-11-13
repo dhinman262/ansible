@@ -4,6 +4,6 @@
 # This is what I did to get the encrypted password:
 # ansible-vault encrypt_string --ask-vault-pass '???' --name 'SAMBA_PASSWORD'
   roles:
-  - samba
+  - dns
   
   

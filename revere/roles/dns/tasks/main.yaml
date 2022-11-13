@@ -1,0 +1,88 @@
+# Install the dnsmasq local DNS server and set it up
+- name: Install dnsmasq
+  become: yes
+  apt:
+    name: ['dnsmasq']
+    state: present
+    update_cache: yes
+
+# - name: "create share"
+#   become: yes
+#   file:
+#     path: /home/share
+#     state: directory
+#     group: sambashare
+#     mode: '2770'
+    
+
+# # Set up smbguest
+# - name: Check if smbguest exists in /etc/passwd
+#   shell: "grep smbguest /etc/passwd"
+#   register: smbguest_user_exists
+#   failed_when: "smbguest_user_exists.rc == 2"
+#   check_mode: no
+
+# - name: "Create smbguest user"
+#   become: yes
+#   user:
+#     group: sambashare
+#     home: /home/share/smbguest
+#     name: smbguest
+#     password: "{{ SAMBA_PASSWORD_HASHED }}"
+#     shell: /usr/sbin/nologin
+#   when: smbguest_user_exists.rc == 1
+
+# - name: "Set modes on smbguest home"
+#   become: yes
+#   file:
+#     path: /home/share/smbguest
+#     state: directory
+#     mode: '2770'
+    
+# - name: "set samba password for smbguest"
+#   become: yes
+#   shell: "printf '{{ SAMBA_PASSWORD }}\n{{ SAMBA_PASSWORD }}\n' | smbpasswd -a smbguest"
+
+# # Set up smbadmin
+# - name: Check if smbadmin exists in /etc/passwd
+#   shell: "grep smbadmin /etc/passwd"
+#   register: smbadmin_user_exists
+#   failed_when: "smbadmin_user_exists.rc == 2"
+#   check_mode: no
+
+# - name: "Create smbadmin user"
+#   become: yes
+#   user:
+#     group: sambashare
+#     home: /home/share/smbadmin
+#     name: smbadmin
+#     password: "{{ SAMBA_PASSWORD_HASHED }}"
+#     shell: /usr/sbin/nologin
+#   when: smbadmin_user_exists.rc == 1
+
+# - name: "Set modes on smbadmin home"
+#   become: yes
+#   file:
+#     path: /home/share/smbadmin
+#     state: directory
+#     mode: '2770'
+    
+# - name: "set samba password for smbadmin"
+#   become: yes
+#   shell: "printf '{{ SAMBA_PASSWORD }}\n{{ SAMBA_PASSWORD }}\n' | smbpasswd -a smbadmin"
+
+# # Template in the config file
+# - name: Template a file, using symbolic modes (equivalent to 0644)
+#   become: yes
+#   ansible.builtin.template:
+#     src: ../files/smb.conf
+#     dest: /etc/samba/smb.conf
+#     owner: root
+#     group: root
+#     mode: '644'
+
+# - name: restart the smbd service
+#   service:
+#     name: smbd
+#     state: restarted
+#   become: true
