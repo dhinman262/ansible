@@ -61,7 +61,7 @@ for d in templates scripts .ssh .jupyter; do
 done
 
 # Symlink in the opt data directories
-for d in Videos Documents Pictures Music; do
+for d in Videos Documents Pictures Music projects; do
     echo "opt data dir $d ..."
     if [[ ! -L ~/${d} ]]; then
         rm -rf ~/${d}
@@ -70,7 +70,7 @@ for d in Videos Documents Pictures Music; do
 done
 
 # Symlink in the opt home directories
-for d in Notes; do
+for d in Notes projects; do
     echo "opt home dir $d ..."
     if [[ ! -L ~/${d} ]]; then
         rm -rf ~/${d}

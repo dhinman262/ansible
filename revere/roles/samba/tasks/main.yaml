@@ -74,3 +74,9 @@
     owner: root
     group: root
     mode: '644'
+
+- name: restart the smbd service
+  service:
+    name: smbd
+    state: restarted
+  become: true
