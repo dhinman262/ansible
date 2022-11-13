@@ -6,6 +6,22 @@
     state: present
     update_cache: yes
 
+# Template in the config file
+- name: Install dnsmasq.conf
+  become: yes
+  ansible.builtin.template:
+    src: ../files/dnsmasq.conf
+    dest: /etc/dnsmasq.conf
+    owner: root
+    group: root
+    mode: '644'
+
+- name: Restart the dnsmasq service
+  service:
+    name: dnsmasq
+    state: restarted
+  become: true
+
 # - name: "create share"
 #   become: yes
 #   file:
@@ -71,18 +87,6 @@
 #   become: yes
 #   shell: "printf '{{ SAMBA_PASSWORD }}\n{{ SAMBA_PASSWORD }}\n' | smbpasswd -a smbadmin"
 
-# # Template in the config file
-# - name: Template a file, using symbolic modes (equivalent to 0644)
-#   become: yes
-#   ansible.builtin.template:
-#     src: ../files/smb.conf
-#     dest: /etc/samba/smb.conf
-#     owner: root
-#     group: root
-#     mode: '644'
 
-# - name: restart the smbd service
-#   service:
-#     name: smbd
-#     state: restarted
-#   become: true
+
+
