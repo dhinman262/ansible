@@ -16,6 +16,29 @@
     group: root
     mode: '644'
 
+# We need to stop systemd-resolve from listening on port 53
+- name: Create /etc/systemd/resolved.conf.d/
+  become: yes
+  file:
+    path: /etc/systemd/resolved.conf.d/
+    state: directory
+    group: root
+
+- name: Install systemd-resolve blocker 
+  become: yes
+  ansible.builtin.template:
+    src: ../files/10-make-dns-work.conf
+    dest: /etc/systemd/resolved.conf.d/10-make-dns-work.conf
+    owner: root
+    group: root
+    mode: '644'
+
+- name: Restart systemd-resolved
+  service:
+    name: systemd-resolved
+    state: restarted
+  become: true
+
 - name: Restart the dnsmasq service
   service:
     name: dnsmasq
