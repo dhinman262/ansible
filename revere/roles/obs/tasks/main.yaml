@@ -1,0 +1,7 @@
+# Install OBS Studio and prerequisites
+- name: Install OBS Studio
+  become: yes
+  apt:
+    name: ['ffmpeg', 'v4l2loopback-dkms', 'obs-studio']
+    state: present
+    update_cache: yes
