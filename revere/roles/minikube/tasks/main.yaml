@@ -33,7 +33,13 @@
       dest: '/usr/local/bin/kubectl'
       mode: '755'
 
-- name: echo kubectl version
-  become: yes
-  shell: /usr/local/bin/kubectl version
+# kubectl gives an error, sincr it can't connect
+#- name: echo kubectl version
+#  become: yes
+#  shell: /usr/local/bin/kubectl version
+
+# TODO: minikube config for rootless podman
+# minikube config set rootless true
+# minikube config set driver podman
+# minikube config set container-runtime containerd
 
