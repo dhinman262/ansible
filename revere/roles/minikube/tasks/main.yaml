@@ -1,0 +1,25 @@
+- name: create /opt/tools/installers
+  become: yes
+  file:
+    path: /opt/tools/installers
+    state: directory
+    mode: '777'
+
+- name: Install minikube prerequisites
+  become: yes
+  apt:
+    name: ['curl', 'wget', 'apt-transport-https']
+    state: present
+    update_cache: yes
+
+- name: fetch minikube binary
+  become: yes
+  get_url:
+      url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+      dest: '/usr/local/bin/mikikube'
+      mode: '755'
+  shell: curl -o- https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 > /usr/local/bin/minikube
+ 
+- name: echo minikube version
+  become: yes
+  shell: /usr/local/bin/minikube version
