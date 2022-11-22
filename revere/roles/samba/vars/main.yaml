@@ -1,3 +1,18 @@
+# How do I get encrypted hashes (not just regular variables)?
+# I see a claim that I can generate a hashed password like this:
+#
+# LONGHASH=`echo WRONGPW | openssl passwd -6 -stdin`
+# 
+# It emits a very long hash
+# 
+# And then I can encrypt it
+# 
+# ansible-vault encrypt_string --ask-vault-pass \
+# ${LONGHASH} \
+# --name 'SAMBA_PASSWORD_HASHED'
+
+
+
 SAMBA_PASSWORD: !vault |
           $ANSIBLE_VAULT;1.1;AES256
           36313132626365316535613730353364326161623061303634303130333361373939636464303162
