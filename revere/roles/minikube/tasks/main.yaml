@@ -18,8 +18,7 @@
       url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
       dest: '/usr/local/bin/mikikube'
       mode: '755'
-  shell: curl -o- https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64 > /usr/local/bin/minikube
- 
+
 - name: echo minikube version
   become: yes
   shell: /usr/local/bin/minikube version
