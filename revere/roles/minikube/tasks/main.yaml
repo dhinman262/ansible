@@ -16,9 +16,24 @@
   become: yes
   get_url:
       url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
-      dest: '/usr/local/bin/mikikube'
+      dest: '/usr/local/bin/minikube'
       mode: '755'
 
 - name: echo minikube version
   become: yes
   shell: /usr/local/bin/minikube version
+
+# curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl
+# The contents of that stable file is v1.25.4
+# So: https://storage.googleapis.com/kubernetes-release/release/v1.25.4/bin/linux/amd64/kubectl
+- name: fetch kubectl binary
+  become: yes
+  get_url:
+      url: https://storage.googleapis.com/kubernetes-release/release/v1.25.4/bin/linux/amd64/kubectl
+      dest: '/usr/local/bin/kubectl'
+      mode: '755'
+
+- name: echo kubectl version
+  become: yes
+  shell: /usr/local/bin/kubectl version
+
