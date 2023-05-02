@@ -2,7 +2,14 @@
 
 - hosts: localhost
   roles:
-  - setup
-  - base
-  - docker
   - apps
+#  - mongo
+#  - commands
+#  - docker
+#  - node
+#  - go
+#  - rust
+#  - samba
+
+  
+  
