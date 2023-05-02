@@ -1,12 +1,56 @@
-# Provisioning for my new Chromebook
+# Provisioning adams after a wipe
 
-To get the process started, run the bootstrap script:
+First, I have to have Linux Mint 21 installed and a working network connection. The bootstrap will setup a new ssh key.
+
+I installed openssh-server fro remote access.
+
+Then, run the bootstrap script:
 
 ```
-bash <(wget -qO - https://github.com/dhinman262/ansible/raw/master/quechee/bootstrap.sh)
+wget -qO - \
+    https://github.com/dhinman262/ansible/raw/master/adams/bootstrap.sh \
+    > dlb.sh
+bash ./dlb.sh
 ```
 
-## Testing via Vagrant
+This will:
+
+- install Ansible
+
+- install Git
+
+- make sure Python 3 is present
+
+- create an Ansible inventory
+
+- generate an ssh id (if none is present)
+
+- check out the ansible repo (using https)
+
+## Next: clone and link
+
+```
+# We seem to need to get github in the known_hosts file; let's get it now
+
+cd /opt/home/dhinman/Resources/ansible
+git fetch pgh
+git checkout --track pgh/revere
+
+cd revere
+bash ./cloneAndLink.sh
+```
+
+## Next: install everything using ansible
+```
+sudo ansible-playbook -vvvv revere-playbook.yaml > ansible.log
+```
+
+## Next: Do the work afterwards
+
+- Update all the packages
+
+- 
+## Testing via Vagrant (not sure this actually works)
 
 So:
 

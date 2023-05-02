@@ -14,6 +14,7 @@ all:
     localhost:
       ansible_connection: local
 EOF
+    sudo mkdir -p /etc/ansible
     sudo ansible \
         --inventory='localhost,' \
         --connection='local' \
