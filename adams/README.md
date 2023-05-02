@@ -2,7 +2,7 @@
 
 First, I have to have Linux Mint 21 installed and a working network connection. The bootstrap will setup a new ssh key.
 
-I installed openssh-server fro remote access.
+I installed openssh-server for remote access.
 
 Then, run the bootstrap script:
 
